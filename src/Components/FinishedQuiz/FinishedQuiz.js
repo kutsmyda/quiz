@@ -1,16 +1,16 @@
 import styles from './FinishedQuiz.module.css'
 import React from 'react';
+import {Button} from "../UI/Button/Button";
 
 function FinishedQuiz(props) {
-    console.log(Object.keys(props.results))
     const successCount = Object.keys(props.results).reduce((total, key) => {
         console.log(props.results[key])
         if (props.results[key] === 'success') {
             total++
-
         }
         return total
     }, 0)
+    console.log(successCount)
     return (
         <div className={styles.FinishedQuiz}>
             <ul>
@@ -47,6 +47,7 @@ function FinishedQuiz(props) {
             <p>Правильно {successCount} з {props.quiz.length}</p>
 
             <div>
+                <Button onClick={props.onRerender} type="primary">Повторити</Button>
                 <button onClick={props.onRerender}>Повторити</button>
             </div>
         </div>

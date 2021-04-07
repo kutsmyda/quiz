@@ -52,8 +52,8 @@ class Quiz extends Component {
         const question = this.state.quiz[this.state.activeQuestion]
         const results = this.state.results
         if (question.rightAnswerId === id) {
-            if (!question.id) {
-                question.id = 'success'
+            if (!results[question.id]) {
+                results[question.id] = 'success'
             }
             this.setState({
                 answerState: {[id]: 'success'},
@@ -89,7 +89,12 @@ class Quiz extends Component {
     }
 
     onRerender = () => {
-
+        this.setState({
+            results: {},
+            activeQuestion: 0,
+            isFinished: false,
+            answerState: null,
+        })
     }
 
     render() {
