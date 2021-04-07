@@ -6,6 +6,7 @@ import FinishedQuiz from "../../Components/FinishedQuiz/FinishedQuiz";
 
 class Quiz extends Component {
     state = {
+        results: {},
         activeQuestion: 0,
         isFinished: false,
         answerState: null,
@@ -41,22 +42,26 @@ class Quiz extends Component {
     }
 
     onAnswerClickHandler = (id) => {
-        if(this.state.answerState){
+        if (this.state.answerState) {
             const key = Object.keys(this.state.answerState)[0]
-            if(this.state.answerState[key]==='success'){
+            if (this.state.answerState[key] === 'success') {
                 return
             }
         }
 
         const question = this.state.quiz[this.state.activeQuestion]
+        const results = this.state.results
         if (question.rightAnswerId === id) {
+            if (!question.id) {
+                question.id = 'success'
+            }
             this.setState({
-                answerState: {[id]: 'success'}
+                answerState: {[id]: 'success'},
+                results
             })
             const timerId = window.setTimeout(() => {
                 if (this.isQuizFineshed()) {
-                    this.setState({isFinished:true})
-                    console.log('Finished')
+                    this.setState({isFinished: true})
                 } else {
                     this.setState({
                         activeQuestion: this.state.activeQuestion + 1,
@@ -68,10 +73,11 @@ class Quiz extends Component {
                 window.clearTimeout(timerId)
             }, 1000)
 
-
         } else {
+            results[question.id] = 'error'
             this.setState({
-                answerState: {[id]: 'error'}
+                answerState: {[id]: 'error'},
+                results
             })
         }
 
@@ -82,6 +88,9 @@ class Quiz extends Component {
         return this.state.activeQuestion + 1 === this.state.quiz.length
     }
 
+    onRerender = () => {
+
+    }
 
     render() {
         return (
@@ -91,7 +100,9 @@ class Quiz extends Component {
                     {
                         this.state.isFinished ?
                             <FinishedQuiz
-
+                                results={this.state.results}
+                                quiz={this.state.quiz}
+                                onRerender={this.onRerender}
                             /> :
                             <ActiveQiuz
                                 answers={this.state.quiz[this.state.activeQuestion].answers}

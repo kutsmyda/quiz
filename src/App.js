@@ -5,7 +5,6 @@ function App() {
     return (
         <Layout>
             <Quiz/>
-
         </Layout>
     );
 }
