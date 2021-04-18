@@ -1,5 +1,5 @@
 .Drawer {
-position: fixed;
+    position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
@@ -28,6 +28,7 @@ position: fixed;
     margin-bottom: 15px;
 
 }
+
 .Drawer ul li a {
     color: #364d54;
     font-size: 30px;
@@ -37,6 +38,11 @@ position: fixed;
     transition: opacity .4s;
 }
 
-.Drawer ul li a:hover , active {
-    opacity:  .7;
+.Drawer ul li a:hover, active {
+    opacity: .7;
+}
+
+.active {
+    opacity: .7;
+    color: #1f3600;
 }
