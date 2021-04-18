@@ -5,5 +5,6 @@
     bottom: 0;
     right: 0    ;
     z-index: 50;
-    background-color: rgba(0, 0, 0, .8) ;
+    background-color: #1d2f05;
+    opacity: 0.7;
  }
