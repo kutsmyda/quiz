@@ -15,7 +15,6 @@ function App() {
                 <Route path='/quiz/:id' component={Quiz}/>
                 <Route path='/' component={QuizList}/>
             </Switch>
-            <Quiz/>
         </Layout>
     );
 }

@@ -23,7 +23,7 @@ class Drawer extends Component {
                 >
                     <NavLink
                         to={link.to}
-                        exact={link.exact}
+                        exact={true}
                         activeClassName={styles.active}
                         onClick={this.handleClick}
                     >
