@@ -1,15 +1,25 @@
 import React from 'react'
 import styles from './input.module.css'
 
+function isInValid({valid,touched,shouldValidate}){
+    return !valid && shouldValidate && touched
+}
+
 const Input = props => {
 
     const inputType = props.type || 'text'
     const cls = [styles.Input]
     const htmlFor = `${inputType}-${Math.random()}`
 
+
+    if(isInValid(props)){
+        cls.push(styles.invalid)
+    }
+
+
     return (
         <div className={cls.join(' ')}>
-            <label htmlFor={htmlFor}>props.label</label>
+            <label htmlFor={htmlFor}>{props.label}</label>
             <input
                 type={inputType}
                 id={htmlFor}
@@ -17,7 +27,8 @@ const Input = props => {
                 onChange={props.onChange}
             />
 
-            <span>{props.errorMessage }</span>
+            {isInValid(props) ? <span>{props.errorMessage || "Введіть коректні дані" }</span> : null
+             }
         </div>
     )
 }
