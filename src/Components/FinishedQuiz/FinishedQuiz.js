@@ -49,7 +49,9 @@ function FinishedQuiz(props) {
 
             <div>
                 <Button onClick={props.onRerender} type="primary">Повторити</Button>
-                <Button type="success">Пройти до списку тестів</Button>
+                <Link to="/">
+                    <Button type="success" >Пройти до списку тестів</Button>
+                </Link>
             </div>
         </div>
     );
